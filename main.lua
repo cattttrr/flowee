@@ -107,18 +107,18 @@ v:Destroy() else return end
 })
 
 local ProximityButton = Tab:Button({
-        Title = "remove proximity prompt duration"
-        Desc = "proximity prompts taking too long? click this button and fix it."
-        Icon = "lucide:rotate-cw-fading-clock"
-        Callback = function()
-local workspace = game:GetService("Workspace")
+    Title = "remove proximity prompt duration",
+    Desc = "proximity prompts taking too long? click this button and fix it.",
+    Icon = "lucide:rotate-cw-fading-clock",
+    Callback = function()
+        local workspace = game:GetService("Workspace")
 
-game:GetService("RunService").Heartbeat:Connect(function()
-    for _, obj in ipairs(workspace:GetDescendants()) do
-        if obj:IsA("ProximityPrompt") then
-            obj.HoldDuration = 0
-        end
+        game:GetService("RunService").Heartbeat:Connect(function()
+            for _, obj in ipairs(workspace:GetDescendants()) do
+                if obj:IsA("ProximityPrompt") then
+                    obj.HoldDuration = 0
+                end
+            end
+        end)
     end
-end)
-
 })
