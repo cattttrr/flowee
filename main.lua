@@ -106,7 +106,7 @@ v:Destroy() else return end
     end
 })
 
-Animal Hospital:Divider()
+AnimalHospital:Divider()
 
 local ProximityButton = Tab:Button({
         Title = "remove proximity prompt duration"
