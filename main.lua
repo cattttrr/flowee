@@ -25,6 +25,8 @@ local Tab = Window:Tab({
     Icon = "lucide:rabbit",
 })
 
+Tab:Divider({ Text = "main" })
+
 local ThirdPersonButton = Tab:Button({
     Title = "third person",
     Desc = "permanent!",
@@ -66,6 +68,8 @@ local ThirdPersonButton = Tab:Button({
     end
 })
 
+Tab:Divider({ Text = "visuals" })
+
 local EspButton = Tab:Button({
     Title = "esp",
     Desc = "see what patients or anomalies go in the hospital",
@@ -76,8 +80,10 @@ local EspButton = Tab:Button({
     end
 })
 
+Tab:Divider({ Text = "movement" })
+
 local SpeedSlider = Tab:Slider({
-    Title = "movement speed",
+    Title = "change speed",
     Desc = "max 1000",
     Step = 1,
     Value = {
@@ -93,6 +99,8 @@ local SpeedSlider = Tab:Slider({
         print("Speed set to:", value)
     end
 })
+
+Tab:Divider({ Text = "automation" })
 
 local BellButton = Tab:Button({
     Title = "remove bell sound",
