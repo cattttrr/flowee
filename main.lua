@@ -21,7 +21,7 @@ local Window = WindUI:CreateWindow({
 })
 
 local Tab = Window:Tab({
-    Title = "Animal Hospital",
+    Title = "Main",
     Icon = "lucide:rabbit",
 })
 
@@ -106,7 +106,7 @@ v:Destroy() else return end
     end
 })
 
-AnimalHospital:Divider()
+Main:Divider()
 
 local ProximityButton = Tab:Button({
         Title = "remove proximity prompt duration"
