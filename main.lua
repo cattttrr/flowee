@@ -2,6 +2,10 @@ local WindUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/Footag
 
 local Window = WindUI:CreateWindow({
     Title = "flowe",
+local WindUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/Footagesus/WindUI/main/dist/main.lua"))()
+
+local Window = WindUI:CreateWindow({
+    Title = "flowe",
     Icon = "lucide:flower",
     Folder = "flowe",
     NewElements = true,
@@ -25,9 +29,7 @@ local Tab = Window:Tab({
     Icon = "lucide:rabbit",
 })
 
-local MainSection = Tab:Section({ Title = "main" })
-
-local ThirdPersonButton = MainSection:Button({
+local ThirdPersonButton = Tab:Button({
     Title = "third person",
     Desc = "permanent!",
     Icon = "eye",
@@ -64,10 +66,21 @@ local ThirdPersonButton = MainSection:Button({
         end
 
         player.Chatted:Connect(onChatted)
+
     end
 })
 
-local SpeedSlider = MainSection:Slider({
+local EspButton = Tab:Button({
+    Title = "esp",
+    Desc = "see what patients or anomalies go in the hospital",
+    Icon = "lucide:users",
+    Callback = function()
+ local sg=game:GetService("StarterGui")local function sn(t,x,d)sg:SetCore("SendNotification",{Title=t,Text=x,Duration=d})end;task.spawn(function()while true do for _,e in pairs(workspace.NPCs:GetChildren())do if e:FindFirstChildOfClass("Highlight")then continue end;local h=Instance.new("Highlight")h.FillTransparency=0.85;local isp=e:GetAttribute("IsPatient")local sk=e:GetAttribute("Skinwalker")if (isp==false or isp==nil) and sk then sn("AnimalHospital — Notification","A sknwalker entered the building, name:"..e.Name,10)h.OutlineColor=Color3.fromRGB(0,0,0)h.FillColor=Color3.fromRGB(0,0,0)elseif isp==true or isp==nil then sn("AnimalHospital — Notification","A patient entered the building, name:"..e.Name,10)h.OutlineColor=Color3.fromRGB(51,153,51)h.FillColor=Color3.fromRGB(0,255,0)else sn("AnimalHospital — Notification","A visitor entered the building, name:"..e.Name,10)h.OutlineColor=Color3.fromRGB(255,255,255)h.FillColor=Color3.fromRGB(255,255,255)end;h.Parent=e end;task.wait(0.1)end end)
+
+    end
+})
+
+local SpeedSlider = Tab:Slider({
     Title = "change speed",
     Desc = "max 1000",
     Step = 1,
@@ -85,37 +98,25 @@ local SpeedSlider = MainSection:Slider({
     end
 })
 
-local VisualsSection = Tab:Section({ Title = "visuals" })
-
-local EspButton = VisualsSection:Button({
-    Title = "esp",
-    Desc = "see what patients or anomalies go in the hospital",
-    Icon = "lucide:users",
-    Callback = function()
-        local sg=game:GetService("StarterGui")local function sn(t,x,d)sg:SetCore("SendNotification",{Title=t,Text=x,Duration=d})end;task.spawn(function()while true do for _,e in pairs(workspace.NPCs:GetChildren())do if e:FindFirstChildOfClass("Highlight")then continue end;local h=Instance.new("Highlight")h.FillTransparency=0.85;local isp=e:GetAttribute("IsPatient")local sk=e:GetAttribute("Skinwalker")if (isp==false or isp==nil) and sk then sn("AnimalHospital — Notification","A sknwalker entered the building, name:"..e.Name,10)h.OutlineColor=Color3.fromRGB(0,0,0)h.FillColor=Color3.fromRGB(0,0,0)elseif isp==true or isp==nil then sn("AnimalHospital — Notification","A patient entered the building, name:"..e.Name,10)h.OutlineColor=Color3.fromRGB(51,153,51)h.FillColor=Color3.fromRGB(0,255,0)else sn("AnimalHospital — Notification","A visitor entered the building, name:"..e.Name,10)h.OutlineColor=Color3.fromRGB(255,255,255)h.FillColor=Color3.fromRGB(255,255,255)end;h.Parent=e end;task.wait(0.1)end end)
-    end
-})
-
-local AutoSection = Tab:Section({ Title = "automation" })
-
-local BellButton = AutoSection:Button({
+local BellButton = Tab:Button({
     Title = "remove bell sound",
     Desc = "sick and tired of that stupid sound? remove it simply from this button.",
     Icon = "lucide:bell-off",
     Callback = function()
-        local v = workspace.Misc.CheckIn.Bell["Primary Mesh"]:FindFirstChild("BellSound")
-        if v then 
-            v:Destroy() 
-        end
+local v = workspace.Misc.CheckIn.Bell["Primary Mesh"]:FindFirstChild("BellSound");
+if v then 
+v:Destroy() else return end
+
     end
 })
 
-local ProximityButton = AutoSection:Button({
+local ProximityButton = Tab:Button({
     Title = "remove proximity prompt duration",
     Desc = "proximity prompts taking too long? click this button and fix it.",
-    Icon = "lucide:ellipsis",
+    Icon = "lucide:rotate-cw-fading-clock",
     Callback = function()
         local workspace = game:GetService("Workspace")
+
         game:GetService("RunService").Heartbeat:Connect(function()
             for _, obj in ipairs(workspace:GetDescendants()) do
                 if obj:IsA("ProximityPrompt") then
